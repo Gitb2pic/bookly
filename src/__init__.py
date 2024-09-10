@@ -1,13 +1,13 @@
 from fastapi import FastAPI
 from src.books.router import router as books_router
 from contextlib import asynccontextmanager
-from src.db.main import init_db
+from src.db.main import initdb
 from fastapi.middleware.cors import CORSMiddleware
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     print("Lifespan: starting up")
-    init_db()
+    await initdb()
     yield
     print("Lifespan: shutting down")
 
